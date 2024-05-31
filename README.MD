@@ -14,6 +14,7 @@ mason make "any brick"
 
 ### List template you can generate
 1. Clean Architecture Feature
-2. Widget
+2. Clean Architecture Project
+3. Widget
 
 note: to find more information about bricks you can go to ./bricks
