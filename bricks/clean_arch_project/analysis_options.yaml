@@ -1,0 +1,4 @@
+analyzer:
+  exclude:
+    - __brick__/**
+    - __brick__/{{project_name.snakeCase()}}/**

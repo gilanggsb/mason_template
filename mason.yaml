@@ -6,3 +6,5 @@ bricks:
     path: bricks/widget
   clean_arch_feature:
     path: bricks/clean_arch_feature
+  clean_arch_project:
+    path: bricks/clean_arch_project
