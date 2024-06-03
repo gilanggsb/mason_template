@@ -2,32 +2,32 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:{{project_name.snakeCase()}}/common/common.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
-class AppBlocObserver extends BlocObserver {
-  const AppBlocObserver();
-
-  @override
-  void onChange(BlocBase<dynamic> bloc, Change<dynamic> change) {
-    super.onChange(bloc, change);
-    log('onChange(${bloc.runtimeType}, $change)');
-  }
-
-  @override
-  void onError(BlocBase<dynamic> bloc, Object error, StackTrace stackTrace) {
-    log('onError(${bloc.runtimeType}, $error, $stackTrace)');
-    super.onError(bloc, error, stackTrace);
-  }
-}
-
 Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
-  FlutterError.onError = (details) {
-    log(details.exceptionAsString(), stackTrace: details.stack);
-  };
+  runZonedGuarded<Future<void>>(
+    () async {
+      FlutterError.onError = (details) {
+        log(details.exceptionAsString(), stackTrace: details.stack);
+      };
+      WidgetsFlutterBinding.ensureInitialized();
+      Bloc.observer = MyBlocObserver();
 
-  Bloc.observer = const AppBlocObserver();
+      await [
+        SystemChrome.setPreferredOrientations([
+          DeviceOrientation.portraitUp,
+          DeviceOrientation.portraitDown,
+        ]),
+        InjectorService.create()
+      ].wait;
 
-  // Add cross-flavor configuration here
-
-  runApp(await builder());
+      runApp(await builder());
+    },
+    (error, stack) => AppUtils.debugPrint(
+      'RunzonedGuarded Error :$error \nStackTrace : $stack ',
+      isError: true,
+    ),
+  );
 }

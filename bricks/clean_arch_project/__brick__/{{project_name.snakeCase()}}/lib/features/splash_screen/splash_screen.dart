@@ -23,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Center(
         child: Text(
           '{{project_name}}',
-          style: AppUtils.semiBoldTextStyle(
+          style: AppStyle.semiBoldTextStyle(
               fontSize: 36, fontColor: AppColors.black, letterSpacing: 4),
         ),
       ),

@@ -1,6 +1,20 @@
 import 'dart:convert';
 
-import 'package:intl/intl.dart' as intl;
+import 'package:intl/intl.dart';
+
+final formats = [
+  DateFormat.yMMMMd('id_ID'),
+  DateFormat("d MMMM yyyy", "id_ID"),
+  DateFormat.yMd('id_ID'),
+  DateFormat("dd/MM/yyyy"),
+  DateFormat("yyyy-MM-dd"),
+  DateFormat("MMMM d, yyyy"),
+  DateFormat("MMMM d yyyy"),
+  DateFormat("d MMMM yyyy"),
+  DateFormat("dd MMM yyyy"),
+  DateFormat(
+      "yyyy-MM-ddTHH:mm:ss.SSSSSS"), // Correct format for your specific date string
+];
 
 extension StringExtension on String {
   int get parseInt => int.parse(this);
@@ -47,10 +61,9 @@ extension StringExtension on String {
   }
 
   /// Format numeric currency
-  String get numCurrency =>
-      intl.NumberFormat.currency(customPattern: "#,##0.00")
-          .format(double.tryParse(this))
-          .toString();
+  String get numCurrency => NumberFormat.currency(customPattern: "#,##0.00")
+      .format(double.tryParse(this))
+      .toString();
 
   /// Check whether a string is a number or not
   /// ```dart
@@ -181,6 +194,23 @@ extension StringExtension on String {
   /// foo.isContainHtmlTags; // returns false
   bool get isContainHtmlTags =>
       RegExp(r"<[^>]*>", multiLine: true).hasMatch(this);
+
+  DateTime? toDate({DateTime? defaultDate}) {
+    try {
+      // Try parsing directly with DateTime.parse
+      return DateTime.parse(this);
+    } catch (_) {
+      // If DateTime.parse fails, try custom formats
+      for (var format in formats) {
+        try {
+          return format.parse(this);
+        } catch (_) {
+          continue;
+        }
+      }
+    }
+    return defaultDate;
+  }
 }
 
 extension StringExt on String? {

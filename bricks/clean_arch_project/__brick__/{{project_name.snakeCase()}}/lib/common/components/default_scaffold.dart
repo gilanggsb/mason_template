@@ -2,35 +2,55 @@ import 'package:flutter/material.dart';
 import 'package:{{project_name.snakeCase()}}/common/common.dart';
 
 class DefaultScaffold extends StatelessWidget {
+  final Widget body;
+  final Color? bgBodyColor;
+  final PreferredSizeWidget? appBar;
+  final Widget? bottomNavBar;
+  final void Function(bool)? onPopInvoked;
+  final FloatingActionButton? floatingActionButton;
+  final EdgeInsets? bodyPadding;
+  final FloatingActionButtonLocation? floatingActionButtonLocation;
+  final Function()? onInit;
+  final Function()? onDispose;
+  final Function()? didUpdateWidget;
+  final Function()? didChangeDependencies;
+
   const DefaultScaffold({
     super.key,
     required this.body,
-    this.backgroundColor,
-    this.marginBody,
+    this.bgBodyColor,
     this.appBar,
+    this.bottomNavBar,
+    this.onPopInvoked,
     this.floatingActionButton,
     this.floatingActionButtonLocation,
-  }) : super();
-
-  final Widget body;
-  final Color? backgroundColor;
-
-  final DefaultAppBar? appBar;
-  final EdgeInsets? marginBody;
-  final Widget? floatingActionButton;
-  final FloatingActionButtonLocation? floatingActionButtonLocation;
+    this.bodyPadding,
+    this.onInit,
+    this.onDispose,
+    this.didUpdateWidget,
+    this.didChangeDependencies,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: appBar,
-        floatingActionButton: floatingActionButton,
-        floatingActionButtonLocation: floatingActionButtonLocation,
-        backgroundColor: AppColors.background,
-        body: Container(
-          margin: marginBody ?? AppUtils.baseMarginPadding8,
-          child: body,
+    return PopScope(
+      canPop: false,
+      onPopInvoked: onPopInvoked,
+      child: StatefulWrapper(
+        onInit: onInit,
+        didChangeDependencies: didChangeDependencies,
+        didUpdateWidget: didUpdateWidget,
+        onDispose: onDispose,
+        child: Scaffold(
+          appBar: appBar,
+          floatingActionButton: floatingActionButton,
+          floatingActionButtonLocation: floatingActionButtonLocation,
+          backgroundColor: bgBodyColor ?? AppColors.background,
+          body: Container(
+            padding: bodyPadding ?? const EdgeInsets.all(16),
+            child: body,
+          ),
+          bottomNavigationBar: bottomNavBar,
         ),
       ),
     );
