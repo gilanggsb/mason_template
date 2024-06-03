@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:{{project_name.snakeCase()}}/common/common.dart';
@@ -10,7 +9,11 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   runZonedGuarded<Future<void>>(
     () async {
       FlutterError.onError = (details) {
-        log(details.exceptionAsString(), stackTrace: details.stack);
+        AppUtils.debugPrint(
+          details.exceptionAsString(),
+          stackTrace: details.stack,
+          level: LogLevel.error,
+        );
       };
       WidgetsFlutterBinding.ensureInitialized();
       Bloc.observer = MyBlocObserver();
@@ -27,7 +30,7 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
     },
     (error, stack) => AppUtils.debugPrint(
       'RunzonedGuarded Error :$error \nStackTrace : $stack ',
-      isError: true,
+      level: LogLevel.error,
     ),
   );
 }
