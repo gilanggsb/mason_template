@@ -31,9 +31,9 @@ class CurlLoggerDioInterceptor extends Interceptor {
   void _renderCurlRepresentation(RequestOptions requestOptions) {
     // add a breakpoint here so all errors can break
     try {
-      AppUtils.debugPrint(_cURLRepresentation(requestOptions));
+      Logger.logApi(_cURLRepresentation(requestOptions));
     } catch (err) {
-      AppUtils.debugPrint(
+      Logger.logApi(
           'unable to create a CURL representation of the requestOptions');
     }
   }

@@ -1,4 +1,4 @@
-name: example_hooks
+name: clean_arch_project_hooks
 
 environment:
   sdk: ">=2.12.0 <3.0.0"

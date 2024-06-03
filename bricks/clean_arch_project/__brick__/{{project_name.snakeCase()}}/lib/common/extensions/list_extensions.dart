@@ -6,4 +6,16 @@ extension ListExt on List {
     });
     return value;
   }
+
+  List<T> replaceOrAdd<T>(T obj, dynamic Function(T) identifier,
+      {bool addWhenEmpty = true}) {
+    int index = indexWhere((element) => identifier(element) == identifier(obj));
+    if (index >= 0) {
+      removeAt(index);
+      insert(index, obj);
+    } else {
+      if (addWhenEmpty) add(obj);
+    }
+    return this as List<T>;
+  }
 }

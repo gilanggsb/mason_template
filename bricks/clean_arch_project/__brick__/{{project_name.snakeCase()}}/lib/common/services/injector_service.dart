@@ -52,5 +52,8 @@ class InjectorService {
     getIt.registerLazySingleton<InternetConnectionChecker>(
       () => InternetConnectionChecker(),
     );
+    getIt.registerSingleton<AppRouter>(
+      AppRouter(),
+    );
   }
 }

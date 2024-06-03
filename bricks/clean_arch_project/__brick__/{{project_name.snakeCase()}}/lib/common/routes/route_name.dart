@@ -1,4 +1,5 @@
 enum RouteName {
+  home('Home', '/home'),
   splash('Splash', '/');
 
   final String name;

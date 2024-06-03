@@ -1,29 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:{{project_name.snakeCase()}}/common/common.dart';
 
-class SplashScreen extends StatefulWidget {
+@RoutePage()
+class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
 
-  @override
-  State<SplashScreen> createState() => _SplashScreenState();
-}
-
-class _SplashScreenState extends State<SplashScreen> {
-  @override
-  void initState() {
-    super.initState();
-    checkUser();
+  void checkUser() async {
+    // globalContext.replaceRoute(HomeRoute(titleArgs: 'test'));
   }
-
-  void checkUser() async {}
 
   @override
   Widget build(BuildContext context) {
     return DefaultScaffold(
+      onInit: checkUser,
       body: Center(
         child: Text(
-          '{{project_name}}',
-          style: AppUtils.semiBoldTextStyle(
+          'chat',
+          style: AppStyle.semiBoldTextStyle(
               fontSize: 36, fontColor: AppColors.black, letterSpacing: 4),
         ),
       ),
