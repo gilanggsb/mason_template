@@ -25,6 +25,7 @@ Clean Arch Project includes:
 - http_parser
 - internet_connection_checker
 - intl
+- auto_route
 
 ## Dev Dependencies
 - bloc_test
@@ -32,18 +33,15 @@ Clean Arch Project includes:
 - freezed
 - json_serializable
 - mockito
+- auto_route_generator
 
 ## Usage 🚀
 1. Create new brick
     ```
-    mason make clean_arch_feature
+    mason make clean_arch_project
     ```
 2. Go to project that have been created
-3. Generate all model freezed/json 
-    ```
-    flutter packages pub run build_runner build --delete-conflictiong-outputs
-    ```
-4. Run the project
+3. Run the project
 
 ## Output
 ```

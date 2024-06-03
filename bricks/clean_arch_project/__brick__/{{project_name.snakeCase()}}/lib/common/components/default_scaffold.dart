@@ -10,6 +10,7 @@ class DefaultScaffold extends StatelessWidget {
   final FloatingActionButton? floatingActionButton;
   final EdgeInsets? bodyPadding;
   final FloatingActionButtonLocation? floatingActionButtonLocation;
+  final bool canPop;
   final Function()? onInit;
   final Function()? onDispose;
   final Function()? didUpdateWidget;
@@ -29,12 +30,13 @@ class DefaultScaffold extends StatelessWidget {
     this.onDispose,
     this.didUpdateWidget,
     this.didChangeDependencies,
+    this.canPop = true,
   });
 
   @override
   Widget build(BuildContext context) {
     return PopScope(
-      canPop: false,
+      canPop: canPop,
       onPopInvoked: onPopInvoked,
       child: StatefulWrapper(
         onInit: onInit,

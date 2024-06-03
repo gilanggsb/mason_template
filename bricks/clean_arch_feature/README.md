@@ -12,9 +12,16 @@ A new brick that create feature with clean architecture.
 2. json_serializable
 
 ## Usage 🚀
-```
-mason make clean_arch_feature
-```
+1. Create new brick
+    ```
+    mason make clean_arch_feature
+    ```
+2. Go to project that have been created
+3. Generate all model freezed/json 
+    ```
+    flutter packages pub run build_runner build --delete-conflicting-outputs
+    ```
+4. Run the project
 
 #### Variables
 | Variable      | Description | 

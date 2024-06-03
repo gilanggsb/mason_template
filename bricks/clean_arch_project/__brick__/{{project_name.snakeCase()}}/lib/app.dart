@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:{{project_name.snakeCase()}}/features/features.dart';
 import 'package:{{project_name.snakeCase()}}/common/common.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -13,7 +12,7 @@ class App extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (BuildContext context, Widget? child) {
-        return MaterialApp(
+        return MaterialApp.router(
           debugShowCheckedModeBanner: false,
           theme: AppStyle.themeData,
           builder: (context, child) {
@@ -26,7 +25,9 @@ class App extends StatelessWidget {
               child: LoadingOverlayAlt(child: child ?? const SizedBox()),
             );
           },
-          home: const SplashScreen(),
+          routerConfig: appRouter.config(
+            navigatorObservers: () => [RouterObserver()],
+          ),
         );
       },
     );
