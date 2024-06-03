@@ -9,10 +9,9 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   runZonedGuarded<Future<void>>(
     () async {
       FlutterError.onError = (details) {
-        AppUtils.debugPrint(
+        Logger.logError(
           details.exceptionAsString(),
           stackTrace: details.stack,
-          level: LogLevel.error,
         );
       };
       WidgetsFlutterBinding.ensureInitialized();
@@ -28,9 +27,8 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
 
       runApp(await builder());
     },
-    (error, stack) => AppUtils.debugPrint(
+    (error, stack) => Logger.logError(
       'RunzonedGuarded Error :$error \nStackTrace : $stack ',
-      level: LogLevel.error,
     ),
   );
 }

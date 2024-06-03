@@ -15,7 +15,7 @@ class StorageServiceImpl extends StorageService {
 
   @override
   Future<void> save({required StorageKeys key, required String value}) async {
-    AppUtils.debugPrint(
+    Logger.logInfo(
       "StorageService \nMethod : save \nkey : ${key.value} \ndata : $value",
     );
     await storage.write(key.value, value);
@@ -24,7 +24,7 @@ class StorageServiceImpl extends StorageService {
   @override
   Future<String?> get(StorageKeys key) async {
     var data = await storage.read(key.value);
-    AppUtils.debugPrint(
+    Logger.logInfo(
       "StorageService \nMethod : get \nkey : ${key.value} \ndata : $data",
     );
     return data;
@@ -32,7 +32,7 @@ class StorageServiceImpl extends StorageService {
 
   @override
   Future<void> remove(StorageKeys key) async {
-    AppUtils.debugPrint(
+    Logger.logInfo(
       "StorageService \nMethod : remove \nkey : ${key.value} ",
     );
     await storage.remove(key.value);
@@ -40,7 +40,7 @@ class StorageServiceImpl extends StorageService {
 
   @override
   Future<bool> containsKey(StorageKeys key) async {
-    AppUtils.debugPrint(
+    Logger.logInfo(
       "StorageService \nMethod : containsKey \nkey :  ${key.value} ",
     );
     var containsKey = storage.hasData(key.value);
@@ -49,7 +49,7 @@ class StorageServiceImpl extends StorageService {
 
   @override
   Future<void> erase() async {
-    AppUtils.debugPrint("StorageService \nMethod : erase all data");
+    Logger.logInfo("StorageService \nMethod : erase all data");
     await storage.erase();
   }
 }
