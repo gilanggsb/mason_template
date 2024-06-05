@@ -3,6 +3,7 @@ import 'package:get_it/get_it.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:{{project_name.snakeCase()}}/common/common.dart';
+import 'package:{{project_name.snakeCase()}}/features/features.dart';
 
 final GetIt getIt = GetIt.instance;
 
@@ -16,7 +17,7 @@ class InjectorService {
 
   Future<void> setupLocator({bool isTesting = false}) async {
     //feature
-
+    homeInjection();
     //service
     serviceInjection(isTesting: isTesting);
     //module
