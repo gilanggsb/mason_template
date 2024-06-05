@@ -13,20 +13,20 @@ part '{{name.snakeCase()}}_bloc.freezed.dart';
 class {{name.pascalCase()}}Bloc extends Bloc<{{name.pascalCase()}}Event, {{name.pascalCase()}}State> {
   {{name.pascalCase()}}Repository repository;
   {{name.pascalCase()}}Bloc({required this.repository}) : super(const _Initial()) {
-    on<{{name.pascalCase()}}Event>(_getData);
+    on<_GetData>(_getData);
   }
 
   void initialization() {
     
   }
   
-  FutureOr<void> _getData(event, emit) async {
-    try{
-    } on ServerFailure catch (e) {
-      _emitFailed(emit, e.message);
-    } catch (e) {
-      _emitFailed(emit, e.toString());
-    }
+  FutureOr<void> _getData(_GetData event, emit) async {
+    // try{
+    // } on ServerFailure catch (e) {
+    //   _emitFailed(emit, e.message);
+    // } catch (e) {
+    //   _emitFailed(emit, e.toString());
+    // }
   }
 
   void _emitFailed(Emitter<{{name.pascalCase()}}State> emit, String message) {

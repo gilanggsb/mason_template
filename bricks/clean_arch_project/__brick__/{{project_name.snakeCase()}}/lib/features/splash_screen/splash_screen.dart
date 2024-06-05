@@ -7,7 +7,9 @@ class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
 
   void checkUser() async {
-    // globalContext.replaceRoute(HomeRoute(titleArgs: 'test'));
+    Future.delayed(const Duration(seconds: 1), () {
+      globalContext.replaceRoute(const HomeRoute());
+    });
   }
 
   @override
@@ -16,7 +18,7 @@ class SplashScreen extends StatelessWidget {
       onInit: checkUser,
       body: Center(
         child: Text(
-          'chat',
+          '{{project_name}}',
           style: AppStyle.semiBoldTextStyle(
               fontSize: 36, fontColor: AppColors.black, letterSpacing: 4),
         ),

@@ -21,5 +21,9 @@ class AppRouter extends $AppRouter {
           path: RouteName.splash.pathName,
           initial: true,
         ),
+        AutoRoute(
+          page: HomeRoute.page,
+          path: RouteName.home.pathName,
+        ),
       ];
 }
