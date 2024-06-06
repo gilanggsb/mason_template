@@ -8,12 +8,7 @@ import 'package:flutter/widgets.dart';
 Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   runZonedGuarded<Future<void>>(
     () async {
-      FlutterError.onError = (details) {
-        Logger.logError(
-          details.exceptionAsString(),
-          stackTrace: details.stack,
-        );
-      };
+      Env.load();
       WidgetsFlutterBinding.ensureInitialized();
       Bloc.observer = MyBlocObserver();
 

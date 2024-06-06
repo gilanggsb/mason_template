@@ -26,6 +26,7 @@ Clean Arch Project includes:
 - internet_connection_checker
 - intl
 - auto_route
+- envied
 
 ## Dev Dependencies
 - bloc_test
@@ -34,6 +35,7 @@ Clean Arch Project includes:
 - json_serializable
 - mockito
 - auto_route_generator
+- envied_generator
 
 ## Usage 🚀
 1. Create new brick

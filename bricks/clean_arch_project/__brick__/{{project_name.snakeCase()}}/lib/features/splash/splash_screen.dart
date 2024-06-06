@@ -18,7 +18,7 @@ class SplashScreen extends StatelessWidget {
       onInit: checkUser,
       body: Center(
         child: Text(
-          '{{project_name}}',
+          'chat',
           style: AppStyle.semiBoldTextStyle(
               fontSize: 36, fontColor: AppColors.black, letterSpacing: 4),
         ),

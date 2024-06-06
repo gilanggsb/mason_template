@@ -1,7 +1,18 @@
+import 'dart:async';
+
 import 'package:mason/mason.dart';
 import 'dart:io';
 
 void run(HookContext context) async {
+  Logger logger = context.logger;
+
+  if (logger.confirm('Would you like to add env to .gitignore?',
+      defaultValue: true)) ignoreEnvFile(context);
+
+  await runBuildRunner(context);
+}
+
+FutureOr<void> runBuildRunner(HookContext context) async {
   // Determine the directory where the pubspec.yaml file is located
   final currentDirectory =
       Directory.current.path + '/' + context.vars['project_name'];
@@ -25,4 +36,29 @@ void run(HookContext context) async {
   } else {
     context.logger.info('build_runner completed successfully');
   }
+}
+
+void ignoreEnvFile(HookContext context) {
+  final currentDirectory =
+      Directory.current.path + '/' + context.vars['project_name'];
+  final gitignoreFile = File('${currentDirectory}/.gitignore');
+  final lines = gitignoreFile.readAsLinesSync();
+
+  // Lines to add to .gitignore
+  final envLines = [
+    '.env.*',
+    // '.env.development',
+    // '.env.production',
+    // '.env.staging',
+  ];
+
+  // Check if the lines already exist to avoid duplicates
+  for (final line in envLines) {
+    if (!lines.contains(line)) {
+      lines.add(line);
+    }
+  }
+
+  // Write the updated lines back to .gitignore
+  gitignoreFile.writeAsStringSync(lines.join('\n'));
 }

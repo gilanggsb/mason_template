@@ -21,6 +21,9 @@ class HomeView extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Text(
+              'Flavor : ${Env.flavor.name}',
+            ),
             const Text(
               'You have pushed the button this many times:',
             ),
