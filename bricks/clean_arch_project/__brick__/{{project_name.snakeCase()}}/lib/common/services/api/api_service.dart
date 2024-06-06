@@ -5,10 +5,21 @@ import 'package:{{project_name.snakeCase()}}/common/common.dart';
 
 abstract class ApiService {
   Future<BaseResponse<T>> get<T>(
-      String endpoints, T Function(Object?) fromJsonT,
-      {Map<String, dynamic> queryParams});
-  Future<BaseResponse<T>> post<T>(String endpoints, Map<String, dynamic> body,
-      T Function(Object?) fromJsonT);
+    String endpoints,
+    T Function(Object?) fromJsonT, {
+    Map<String, dynamic> queryParams,
+  });
+  Future<BaseResponse<T>> post<T>(
+    String endpoints,
+    Map<String, dynamic> body,
+    T Function(Object?) fromJsonT,
+  );
+  Future<BaseResponse<T>> formData<T>(
+    String url,
+    UploadFormDataModel uploadFormData, {
+    String? dataKey,
+    required T Function(Object?) fromJsonT,
+  });
 }
 
 class ApiServiceImpl extends ApiService {
@@ -96,6 +107,42 @@ class ApiServiceImpl extends ApiService {
       }
       final Response response =
           await dio.get(endpoints, queryParameters: queryParams);
+      return parseResponse(response, fromJsonT);
+    } on DioException catch (e) {
+      return parseError(e);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<BaseResponse<T>> formData<T>(
+    String url,
+    UploadFormDataModel uploadFormData, {
+    String? dataKey,
+    required T Function(Object?) fromJsonT,
+  }) async {
+    try {
+      FormData formData = FormData.fromMap({
+        uploadFormData.fileKey: MultipartFile.fromBytes(
+          uploadFormData.fileBytes,
+          filename: uploadFormData.fileName,
+          contentType: uploadFormData.contentType,
+        ),
+        ...uploadFormData.data,
+      });
+
+      final Map<String, dynamic> headers = {
+        'Content-Type': 'multipart/form-data'
+      };
+
+      final Response response = await dio.post(
+        url,
+        data: formData,
+        options: Options(
+          headers: headers,
+        ),
+      );
       return parseResponse(response, fromJsonT);
     } on DioException catch (e) {
       return parseError(e);
