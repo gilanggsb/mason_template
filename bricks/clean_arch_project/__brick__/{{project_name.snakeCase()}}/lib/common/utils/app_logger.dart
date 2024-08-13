@@ -13,7 +13,7 @@ class Logger {
   }) {
     if (kReleaseMode) return;
 
-    String name = "MY_QURANLOG";
+    String name = "{{project_name.constantCase()}}LOG";
     String colorCode = '\x1B[0m'; // Default color
 
     switch (level) {
