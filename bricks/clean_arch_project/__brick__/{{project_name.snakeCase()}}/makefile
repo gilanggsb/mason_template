@@ -16,6 +16,8 @@ menu:
 	@echo "4) Clean Project"
 	@echo "5) Run 'pub get'"
 	@echo "6) Run build runner"
+	@echo "7) Mason make feature"
+	@echo "8) Dart Fix"
 	@echo "Enter your choice:"
 	@read choice; \
 	if [ $$choice -eq 1 ]; then \
@@ -30,6 +32,10 @@ menu:
 		$(MAKE) pub_get; \
 	elif [ $$choice -eq 6 ]; then \
 		$(MAKE) build_runner; \
+	elif [ $$choice -eq 7 ]; then \
+		$(MAKE) mason_feature; \
+	elif [ $$choice -eq 8 ]; then \
+		$(MAKE) dart_fix; \
 	else \
 		echo "Invalid choice."; \
 	fi
@@ -52,3 +58,9 @@ pub_get:
 
 build_runner:
 	${DART_CMD} pub run build_runner build -d
+
+mason_feature:
+	mason make feature -o ./lib/features
+
+dart_fix:
+	$(DART_CMD) fix --dry-run
