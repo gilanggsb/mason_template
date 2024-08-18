@@ -1,1 +1,1 @@
-export 'bloc/{{name.snakeCase()}}_bloc.dart';
+export 'cubit/cubit.dart';

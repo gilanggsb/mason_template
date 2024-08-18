@@ -1,22 +1,21 @@
-import '../../domain/domain.dart';
-import '../../presentation/presentation.dart';
-import '../data.dart';
+import '../../{{name.snakeCase()}}.dart';
+
 
 void {{name.camelCase()}}Injection() {
-  //bloc
-  // getIt.registerFactory<{{name.pascalCase()}}Bloc>(
-  //   () => {{name.pascalCase()}}Bloc(
+  // //bloc
+  // getIt.registerFactory<{{name.pascalCase()}}Cubit>(
+  //   () => {{name.pascalCase()}}Cubit(
   //     repository: getIt(),
   //   ),
   // );
-  //repository
+  // //repository
   // getIt.registerFactory<{{name.pascalCase()}}Repository>(
   //   () => {{name.pascalCase()}}RepositoryImpl(
   //     localDataSource: getIt(),
   //     remoteDataSource: getIt(),
   //   ),
   // );
-  //datasource
+  // //datasource
   // getIt.registerLazySingleton<{{name.pascalCase()}}RemoteDataSource>(
   //   () => {{name.pascalCase()}}RemoteDataSourceImpl(
   //     // service: getIt(),
@@ -27,6 +26,5 @@ void {{name.camelCase()}}Injection() {
   //     // service: getIt(),
   //   ),
   // );
-  //usecase
-  
+  // //usecase
 }
