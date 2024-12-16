@@ -1,3 +1,5 @@
 class {{name.pascalCase()}}Repository {
-  // Repository methods
+  // final ApiService apiService;
+
+  // {{name.pascalCase()}}Repository({required this.apiService});
 }
