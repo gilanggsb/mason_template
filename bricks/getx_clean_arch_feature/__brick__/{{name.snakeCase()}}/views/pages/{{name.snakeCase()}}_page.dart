@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class {{name.pascalCase()}}Page extends StatelessWidget {
+import '../{{name.snakeCase()}}.dart';
+
+class {{name.pascalCase()}}Page extends GetView<{{name.pascalCase()}}Controller> {
   const {{name.pascalCase()}}Page({super.key});
 
   @override

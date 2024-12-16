@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../{{name.snakeCase()}}.dart';
+
 class {{name.pascalCase()}}Binding extends Bindings{
   @override
   void dependencies() {
