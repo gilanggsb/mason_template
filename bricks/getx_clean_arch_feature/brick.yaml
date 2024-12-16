@@ -1,4 +1,4 @@
-name: getx_clean_arch_module
+name: getx_clean_arch_feature
 description: A template for generating getx clean architecture modules.
 # The following defines the brick repository url.
 # Uncomment and update the following line before publishing the brick.
@@ -17,5 +17,5 @@ environment:
 vars:
   name:
     type: string
-    description: Module name
-    default: landing
+    description: Feature name
+    default: Splash
