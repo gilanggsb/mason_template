@@ -10,3 +10,5 @@ bricks:
     path: bricks/clean_arch_project
   getx_clean_arch_feature:
     path: bricks/getx_clean_arch_feature
+  getx_clean_arch_ins_feature:
+    path: bricks/getx_clean_arch_insert_feature
